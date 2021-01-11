@@ -26,3 +26,10 @@ jobs:
           java-version: 1.8
       - name: Build with Maven
         run: mvn clean install --file Satellite_Initialization/pom.xml
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: kanishka2019758
+          password: Cyclopes1@
+          repository: kanishka2019758/satellite2019758
+          tag_with_ref: true
