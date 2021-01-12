@@ -29,7 +29,7 @@ jobs:
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
-          username: kanishka2019758
-          password: Cyclopes1@
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
           repository: kanishka2019758/satellite2019758
           tag_with_ref: true
