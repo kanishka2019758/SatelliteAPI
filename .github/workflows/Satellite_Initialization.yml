@@ -25,7 +25,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Maven
-        run: mvn clean install --file Satellite_Initialization/pom.xml
+        run: mvn clean install --file pom.xml
       - name: Push to Docker Hub
         uses: docker/build-push-action@v1
         with:
