@@ -25,10 +25,8 @@ public class SatelliteImplementation implements SatelliteInterface {
         existingSatelliteModel.setSatelliteName(satelliteModel.getSatelliteName());
         existingSatelliteModel.setCountry(satelliteModel.getCountry());
         existingSatelliteModel.setOperator(satelliteModel.getOperator());
-        existingSatelliteModel.setSector(satelliteModel.getSector());
         existingSatelliteModel.setPurpose(satelliteModel.getPurpose());
-        existingSatelliteModel.setPrimeContractor(satelliteModel.getPrimeContractor());
-        existingSatelliteModel.setLaunchDate(satelliteModel.getLaunchDate());
+        existingSatelliteModel.setAddedDate(satelliteModel.getAddedDate());
         return satelliteRepository.save(existingSatelliteModel);
 
     }

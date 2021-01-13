@@ -1,5 +1,6 @@
 package com.satellite_api_master.satellite_initialization.model;
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "satellite_table",catalog = "satellite_db")
@@ -11,24 +12,20 @@ public class SatelliteModel {
     private String satelliteName;
     private String operator;
     private String country;
-    private String sector;
     private String purpose;
-    private String primeContractor;
-    private String launchDate;
+    private Date addedDate = new Date();
     public SatelliteModel(){
         super();
     }
 
     public SatelliteModel(long satelliteId, String satelliteName, String operator, String country,
-                          String sector, String purpose, String primeContractor, String launchDate) {
+                          String purpose, Date addedDate) {
         this.satelliteId = satelliteId;
         this.satelliteName = satelliteName;
         this.operator = operator;
         this.country = country;
-        this.sector = sector;
         this.purpose = purpose;
-        this.primeContractor = primeContractor;
-        this.launchDate = launchDate;
+        this.addedDate = addedDate;
     }
 
     public long getSatelliteId() {
@@ -63,14 +60,6 @@ public class SatelliteModel {
         this.country = country;
     }
 
-    public String getSector() {
-        return sector;
-    }
-
-    public void setSector(String sector) {
-        this.sector = sector;
-    }
-
     public String getPurpose() {
         return purpose;
     }
@@ -79,20 +68,12 @@ public class SatelliteModel {
         this.purpose = purpose;
     }
 
-    public String getPrimeContractor() {
-        return primeContractor;
+    public Date getAddedDate() {
+        return addedDate;
     }
 
-    public void setPrimeContractor(String primeContractor) {
-        this.primeContractor = primeContractor;
-    }
-
-    public String getLaunchDate() {
-        return launchDate;
-    }
-
-    public void setLaunchDate(String launchDate) {
-        this.launchDate = launchDate;
+    public void setAddedDate(Date addedDate) {
+        this.addedDate = addedDate;
     }
 
 
