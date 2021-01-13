@@ -1,6 +1,6 @@
 package com.satellite_api_master.satellite_initialization.service_implementation;
 
-
+import java.util.Optional;
 import com.satellite_api_master.satellite_initialization.model.SatelliteModel;
 import com.satellite_api_master.satellite_initialization.repository.SatelliteRepository;
 import com.satellite_api_master.satellite_initialization.service_interface.SatelliteInterface;
@@ -28,18 +28,20 @@ public class SatelliteImplementation implements SatelliteInterface {
         existingSatelliteModel.setPurpose(satelliteModel.getPurpose());
         existingSatelliteModel.setAddedDate(satelliteModel.getAddedDate());
         return satelliteRepository.save(existingSatelliteModel);
-
     }
 
     @Override
     public List<SatelliteModel> findAllSatellite() {
-        // It returns a list so casting is needed
         return (List<SatelliteModel>) satelliteRepository.findAll();
     }
 
     @Override
+    public Optional<SatelliteModel> getSatelliteData(long id) {
+        return (Optional<SatelliteModel>) satelliteRepository.findById(id);
+    }
+
+    @Override
     public void deleteSatellite(long id) {
-        // To delete catalog
         satelliteRepository.deleteById(id);
 
     }
