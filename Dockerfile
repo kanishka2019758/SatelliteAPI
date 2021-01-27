@@ -9,6 +9,6 @@ RUN mvn -f /usr/src/app/pom.xml clean package
 # Package stage
 #
 FROM openjdk:8
-COPY --from=build /usr/src/app/target/satellite-0.0.1-SNAPSHOT.jar /usr/local/lib/satellite.jar
-EXPOSE 8001
-ENTRYPOINT ["java","-jar","/usr/local/lib/satellite.jar"]
+COPY --from=build /usr/src/app/target/*.jar /usr/local/lib/satelliteAPI.jar
+EXPOSE 8088
+ENTRYPOINT ["java","-jar","/usr/local/lib/satelliteAPI.jar"]
