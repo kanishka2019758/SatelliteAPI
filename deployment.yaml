@@ -1,0 +1,122 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: satellite
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: satellite
+  name: satellite-deploy
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: satellite-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: satellite-app
+    spec:
+      containers:
+      - image: kanishka2019758/satellite2019758:main
+        imagePullPolicy: Always
+        name: satellite-app
+        ports:
+        - containerPort: 8088
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: satellite
+  name: satellite-service
+spec:
+  ports:
+    - port: 8088
+      targetPort: 8088
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: satellite-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: satellite
+  name: management-deploy
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: management-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: management-app
+    spec:
+      containers:
+      - image: kanishka2019758/management2019758:main
+        imagePullPolicy: Always
+        name: management-app
+        ports:
+        - containerPort: 8089
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: satellite
+  name: management-service
+spec:
+  ports:
+    - port: 8089
+      targetPort: 8089
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: management-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: satellite
+  name: monitoring-deploy
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: monitoring-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: monitoring-app
+    spec:
+      containers:
+      - image: kanishka2019758/monitoring2019758:main
+        imagePullPolicy: Always
+        name: monitoring-app
+        ports:
+        - containerPort: 8090
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: satellite
+  name: monitoring-service
+spec:
+  ports:
+    - port: 8090
+      targetPort: 8090
+      protocol: TCP
+  type: NodePort
+  selector:
+    app.kubernetes.io/name: monitoring-app
+  type: LoadBalancer
+status:
+  loadBalancer: {}
