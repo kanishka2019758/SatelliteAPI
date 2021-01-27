@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/name: satellite-app
     spec:
       containers:
-      - image: $IMAGE_REPO_NAME:$CODEBUILD_RESOLVED_SOURCE_VERSIO
+      - image: 168272913567.dkr.ecr.us-east-2.amazonaws.com/satellite_api:latest
         imagePullPolicy: Always
         name: satellite-app
         ports:
